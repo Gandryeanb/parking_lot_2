@@ -1,0 +1,24 @@
+{
+  "name": "parking_lot_2.0.0",
+  "version": "1.0.0",
+  "description": "parking_lot_2_nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node parking_lot_2.0.0/src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gandryeanb/parking_lot_2.git"
+  },
+  "keywords": [
+    "nodeJS",
+    "OOP"
+  ],
+  "author": "Gusti Andryean Budiman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gandryeanb/parking_lot_2/issues"
+  },
+  "homepage": "https://github.com/Gandryeanb/parking_lot_2#readme"
+}

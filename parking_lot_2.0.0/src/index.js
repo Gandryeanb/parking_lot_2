@@ -1,9 +1,10 @@
 const readline = require('readline');
 
-const parkingLotController = require('./controllers/parkingLot');
+const ParkingLotController = require('./controllers/parkingLotController');
+const parkingLotController = new ParkingLotController();
 
 const commandInput = (rl) =>  rl.question("filename: ", filename => {
-  console.log(parkingLotController(filename))
+  parkingLotController.main(filename)
   commandInput(rl);
 });
 const main = async () => {

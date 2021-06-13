@@ -28,5 +28,16 @@ module.exports = (sinon) => {
 
       assert.equal(spy1.callCount, 1);
     })
+
+    it('Should leave car once', () => {
+      const parkingLotController = new ParkingLotController();
+      const spy1 = sinon.spy(ParkingLot.prototype, 'leave');
+
+      sinon.stub(Filehandler, 'readData').returns(['create_parking_lot 6', 'park KA-01-HH-3141', 'leave KA-01-HH-3141 4']);
+
+      parkingLotController.main('test.txt');
+
+      assert.equal(spy1.callCount, 1);
+    })
   });
 }

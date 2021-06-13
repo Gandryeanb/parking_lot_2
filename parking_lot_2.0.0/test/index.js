@@ -15,7 +15,7 @@ require('./classes/command.test')();
 require('./classes/calculate.test')();
 
 // Controller Class
-require('./controllers/parkingLot')(sinon);
+require('./controllers/parkingLot.test')(sinon);
 
 // Helpers test
 require('./helpers/fileHandler.test')();

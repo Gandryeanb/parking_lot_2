@@ -32,11 +32,12 @@ class ParkingLotController {
         }
 
         case this._command.getPark(): {
-          console.log(this._parkingLot.park(secondValue));
+          console.log(this._parkingLot.park(firstValue));
           break;
         }
 
         case this._command.getLeave(): {
+          console.log(this._parkingLot.leave(firstValue, secondValue));
           break;
         }
 

@@ -193,7 +193,7 @@ module.exports = () => {
       parkingLot.park('2222');
       
       const result = parkingLot.getList();
-      assert.equal(result, `Slot No. Registration No.\n1\t1111\n2\t2222\n`)
+      assert.equal(result, `Slot No. Registration No.\n1\t1111\n2\t2222`)
     })
   })
 }

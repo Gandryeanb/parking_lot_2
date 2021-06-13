@@ -84,10 +84,10 @@ class ParkingLot {
 
   getList() {
     const listLots = this._getListUnavailableSlot();
-    let result = `${HEADERS_GET_LIST}\n`;
+    let result = `${HEADERS_GET_LIST}`;
 
     for (let i = 0; i < listLots.length; i++) {
-      result += `${i + 1}\t${listLots[i].get().car.getCar().id}\n`
+      result += `\n${i + 1}\t${listLots[i].get().car.getCar().id}`
     }
     return result;
   }

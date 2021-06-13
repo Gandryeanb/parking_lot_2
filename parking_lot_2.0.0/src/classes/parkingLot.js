@@ -1,4 +1,6 @@
 const { Lot } = require('./lot');
+const { Car } = require('./car');
+const { AVAILABLE } = require('../constants/status');
 
 class ParkingLot {
   constructor() {
@@ -14,6 +16,17 @@ class ParkingLot {
     }
     this.maxLots = maxLots;
     return `Created parking lot with ${maxLots} slots`;
+  }
+
+  _isAvailable() {
+    for (let i = 0; i < this.lots.length; i++) {
+      if (this.lots[i].get().status === AVAILABLE) return i;
+    }
+    return false;
+  }
+
+  park(carIdentity) {
+    const car = new Car({ id: carIdentity })
   }
 
   get() {

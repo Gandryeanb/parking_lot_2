@@ -14,15 +14,27 @@ module.exports = () => {
     });
 
     it('Should return error if try to init parkinglot more than once', () => {
-        const parkingLot = new ParkingLot();
-        const maxLots = 3;
-        
-        parkingLot.init({ maxLots });
-  
-        assert.equal(maxLots, parkingLot.get().maxLots);
-        assert.equal(maxLots, parkingLot.get().lots.length);
-        assert.throws(() => parkingLot.init({ maxLots }), Error, 'parking lot already exist')
+      const parkingLot = new ParkingLot();
+      const maxLots = 3;
+      
+      parkingLot.init({ maxLots });
 
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+      assert.throws(() => parkingLot.init({ maxLots }), Error, 'parking lot already exist')
+    })
+
+    it('Should return available slot', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 3;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      const result = parkingLot._isAvailable();
+      assert.isNumber(result);
+      assert.deepEqual(result, 0)
     })
   })
 }

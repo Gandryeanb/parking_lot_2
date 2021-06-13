@@ -4,8 +4,10 @@
   "description": "parking_lot_2_nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "mocha parking_lot_2.0.0/test/index.js",
-    "start": "node parking_lot_2.0.0/src"
+    "test": "npx mocha parking_lot_2.0.0/test",
+    "start": "node parking_lot_2.0.0/src",
+    "build": "docker build . -t gusti-parking-lot",
+    "on-docker": "docker run -it gusti-parking-lot sh"
   },
   "repository": {
     "type": "git",
@@ -23,10 +25,9 @@
   "homepage": "https://github.com/Gandryeanb/parking_lot_2#readme",
   "dependencies": {
     "readline": "^1.3.0",
-    "sinon": "^11.1.1"
-  },
-  "devDependencies": {
+    "sinon": "^11.1.1",
     "chai": "^4.3.4",
     "mocha": "^9.0.0"
-  }
+  },
+  "devDependencies": {}
 }

@@ -42,6 +42,7 @@ class ParkingLotController {
         }
 
         case this._command.getStatus(): {
+          console.log(this._parkingLot.getList());
           break;
         }
       

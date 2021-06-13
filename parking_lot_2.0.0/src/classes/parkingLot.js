@@ -1,8 +1,8 @@
 const { Lot } = require('./lot');
 const { Car } = require('./car');
 const { Calculate } = require('./calculate');
-const { AVAILABLE } = require('../constants/status');
-const { PARK_IS_FULL, ALLOCATED_WITH_SLOT, LEAVE_PRICE, CAR_NOT_FOUND, TIME_SPEND_INVALID } = require('../constants/response');
+const { AVAILABLE, UNAVAILABLE } = require('../constants/status');
+const { PARK_IS_FULL, ALLOCATED_WITH_SLOT, LEAVE_PRICE, CAR_NOT_FOUND, TIME_SPEND_INVALID, HEADERS_GET_LIST } = require('../constants/response');
 const { BASE_PRICE, BASE_TIME, ADDITIONAL_PRICE } = require('../constants/price');
 
 class ParkingLot {
@@ -36,6 +36,14 @@ class ParkingLot {
     return -1;
   }
 
+  _getListUnavailableSlot () {
+    const listResult = [];
+    for (let i = 0; i < this.lots.length; i++) {
+      if (this.lots[i].get().status === UNAVAILABLE) listResult.push(this.lots[i]);
+    }
+    return listResult;
+  }
+
   park(carIdentity) {
     const isAvail = this._isAvailable();
     if(isAvail < 0) return PARK_IS_FULL;
@@ -65,7 +73,23 @@ class ParkingLot {
   }
 
   get() {
+    const listLots = this._getListUnavailableSlot();
+    let result = `${HEADERS_GET_LIST}\n`;
+
+    for (let i = 0; i < listLots.length; i++) {
+      result += `${i + 1}\t${listLots[i].get().car.getCar().id}\n`
+    }
     return this;
+  }
+
+  getList() {
+    const listLots = this._getListUnavailableSlot();
+    let result = `${HEADERS_GET_LIST}\n`;
+
+    for (let i = 0; i < listLots.length; i++) {
+      result += `${i + 1}\t${listLots[i].get().car.getCar().id}\n`
+    }
+    return result;
   }
 }
 

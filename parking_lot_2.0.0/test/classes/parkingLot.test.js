@@ -151,5 +151,49 @@ module.exports = () => {
       const result =  parkingLot.leave('112234', 30);
       assert.equal(result, 'Registration number 112234 not found')
     })
+
+    it('Should give list lots unavailable only', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 4;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('1111');
+      parkingLot.park('2222');
+      
+      const result = parkingLot._getListUnavailableSlot();
+
+      const expectedResult = [
+        {
+          index: 0,
+          car: { id: '1111', color: undefined },
+          status: 'UNAVAILABLE'
+        },
+        {
+          index: 1,
+          car: { id: '2222', color: undefined },
+          status: 'UNAVAILABLE',
+        },
+      ];
+
+      assert.deepEqual(result, expectedResult)
+    })
+
+    it('Should give list lots unavailable only like table', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 4;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('1111');
+      parkingLot.park('2222');
+      
+      const result = parkingLot.getList();
+      assert.equal(result, `Slot No. Registration No.\n1\t1111\n2\t2222\n`)
+    })
   })
 }

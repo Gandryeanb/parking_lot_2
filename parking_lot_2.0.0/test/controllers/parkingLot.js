@@ -17,5 +17,16 @@ module.exports = (sinon) => {
 
       assert.equal(spy1.callCount, 1);
     })
+
+    it('Should park car once', () => {
+      const parkingLotController = new ParkingLotController();
+      const spy1 = sinon.spy(ParkingLot.prototype, 'park');
+
+      sinon.stub(Filehandler, 'readData').returns(['create_parking_lot 6', 'park KA-01-HH-1234']);
+
+      parkingLotController.main('test.txt');
+
+      assert.equal(spy1.callCount, 1);
+    })
   });
 }

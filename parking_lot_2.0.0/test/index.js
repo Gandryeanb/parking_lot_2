@@ -12,6 +12,7 @@ require('./classes/car.test')();
 require('./classes/lot.test')();
 require('./classes/parkingLot.test')();
 require('./classes/command.test')();
+require('./classes/calculate.test')();
 
 // Controller Class
 require('./controllers/parkingLot')(sinon);

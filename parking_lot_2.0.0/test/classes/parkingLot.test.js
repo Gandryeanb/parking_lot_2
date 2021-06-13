@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const { ParkingLot } = require('../../src/classes/parkingLot');
 
 module.exports = () => {
-  describe('Class Parking lot', () => {
+  describe('Class | Parking lot', () => {
     it('Should return same as expected with 3 lots length', () => {
       const parkingLot = new ParkingLot();
       const maxLots = 3;

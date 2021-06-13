@@ -4,7 +4,7 @@ const { Car } = require('../../src/classes/car');
 const { Lot } = require('../../src/classes/lot');
 
 module.exports = () => {
-  describe('Class Lot', () => {
+  describe('Class | Lot', () => {
     it('Should return same car as input', () => {
       const carId = '12345';
       const indexLot = 1;

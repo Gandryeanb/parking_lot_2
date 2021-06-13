@@ -48,7 +48,9 @@ class ParkingLot {
   leave(carIdentity, timeSpend) {
     if (timeSpend < 1) return TIME_SPEND_INVALID;
     const lotIndex = this._findCar(carIdentity);
-    if (lotIndex < 0) return CAR_NOT_FOUND;
+    if (lotIndex < 0) {
+      return CAR_NOT_FOUND.replace('$1', carIdentity)
+    };
 
     this.lots[lotIndex].leave();
 

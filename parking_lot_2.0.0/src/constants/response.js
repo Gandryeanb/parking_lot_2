@@ -6,5 +6,5 @@ module.exports = {
   ALLOCATED_WITH_SLOT: 'Allocated slot number: ',
   LEAVE_PRICE: 'Registration number $1 with Slot Number $2 is free with Charge $3',
   TIME_SPEND_INVALID: 'Time spend parking is invalid',
-  CAR_NOT_FOUND: 'Car not found', 
+  CAR_NOT_FOUND: 'Registration number $1 not found', 
 }

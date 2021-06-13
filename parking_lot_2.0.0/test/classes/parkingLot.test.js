@@ -149,7 +149,7 @@ module.exports = () => {
       parkingLot.park('112233');
       
       const result =  parkingLot.leave('112234', 30);
-      assert.equal(result, CAR_NOT_FOUND)
+      assert.equal(result, 'Registration number 112234 not found')
     })
   })
 }

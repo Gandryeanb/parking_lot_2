@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-module.exports = (path) => {
+module.exports = (dirname, filename) => {
   try {
+    const path = dirname + '/../files/' + filename;
     const rawFile = fs.readFileSync(path, 'utf8');
-    const arrInput = rawFile.split('\n');
-    return arrInput;
+    return rawFile.split('\n');
   } catch (error) {
     return false;
   }

@@ -16,6 +16,12 @@ class Lot {
     this.status = UNAVAILABLE
     return this;
   }
+
+  leave() {
+    this.car = null;
+    this.status = AVAILABLE;
+    return this;
+  }
 }
 
 module.exports = {

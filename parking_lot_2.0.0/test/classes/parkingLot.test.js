@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 const { ParkingLot } = require('../../src/classes/parkingLot');
-const { ALLOCATED_WITH_SLOT, PARK_IS_FULL } = require('../../src/constants/response')
+const { ALLOCATED_WITH_SLOT, PARK_IS_FULL, TIME_SPEND_INVALID, CAR_NOT_FOUND } = require('../../src/constants/response')
 
 module.exports = () => {
   describe('Class | Parking lot', () => {
@@ -36,6 +36,21 @@ module.exports = () => {
       const result = parkingLot._isAvailable();
       assert.isNumber(result);
       assert.deepEqual(result, 0)
+    })
+
+    it('Should return index -1', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 1;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('112233');
+
+      const result = parkingLot._isAvailable();
+      assert.isNumber(result);
+      assert.deepEqual(result, -1)
     })
 
     it('Should not park a car if slot is full', () => {
@@ -74,6 +89,67 @@ module.exports = () => {
       const result3 = parkingLot.park('112233');
       assert.isString(result3);
       assert.equal(result3, PARK_IS_FULL);
+    })
+
+    it('Should return index car', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 1;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('112233');
+
+      const result = parkingLot._findCar('112233');
+      assert.isNumber(result);
+      assert.deepEqual(result, 0)
+
+      const result1 = parkingLot._findCar('112234');
+      assert.isNumber(result1);
+      assert.deepEqual(result1, -1)
+    });
+
+    it('Should leave a car with expected calculation fee', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 1;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('112233');
+      
+      const result =  parkingLot.leave('112233', 4);
+      assert.equal(result, 'Registration number 112233 with Slot Number 1 is free with Charge 30')
+    })
+
+    it('Should failed leave car if time spend invalid', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 1;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('112233');
+      
+      const result =  parkingLot.leave('112233', 0);
+      assert.equal(result, TIME_SPEND_INVALID)
+    })
+
+    it('Should failed leave car if Car not found', () => {
+      const parkingLot = new ParkingLot();
+      const maxLots = 1;
+      
+      parkingLot.init({ maxLots });
+      assert.equal(maxLots, parkingLot.get().maxLots);
+      assert.equal(maxLots, parkingLot.get().lots.length);
+
+      parkingLot.park('112233');
+      
+      const result =  parkingLot.leave('112234', 30);
+      assert.equal(result, CAR_NOT_FOUND)
     })
   })
 }
